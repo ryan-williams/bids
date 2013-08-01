@@ -14,8 +14,6 @@ bids = map(
 	bidsStr.split('\n')
 )
 
-# print bids
-
 import copy
 
 def findUsed(bids, curPersonIdx, remainingRoomIndices, assignmentsSoFar, sumSoFar):
@@ -31,8 +29,6 @@ def findUsed(bids, curPersonIdx, remainingRoomIndices, assignmentsSoFar, sumSoFa
 		if curSum > maxSum:
 			maxSum = curSum
 			bestAssignment = copy.copy(curAssignment)
-			# print 'new best assignment! %s' % str(bestAssignment)
-			# print '\tsum %d' % maxSum
 
 	return maxSum, bestAssignment
 
@@ -42,14 +38,12 @@ actualRent = 2100
 surplus = (bestSum - actualRent)*1.0/len(people)
 
 print 'Found sum of %d with surplus of %f per person' % (bestSum, surplus)
-# print bestAssignment
+print ''
 
 for name in people:
 	v = bestAssignment[name]
-# for k,v in bestAssignment.iteritems():
-	print name
-	# print '\t%s' % str(v)
-	print '\troom: %d' % (v['room'] + 1)
-	print '\tbid price: %d' % (v['price'])
-	print '\treduced price: %f' % (v['price'] - surplus)
+	print '\t%s' % name
+	print '\t\troom: %d' % (v['room'] + 1)
+	print '\t\tbid price: %d' % (v['price'])
+	print '\t\treduced price: %f' % (v['price'] - surplus)
 	print ''
